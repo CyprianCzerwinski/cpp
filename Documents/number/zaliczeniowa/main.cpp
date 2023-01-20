@@ -143,12 +143,21 @@ void zmien_pozycje(int &x, int &y,int &bok) // Funkcja zmieniająca pozycję lit
  
 			case 77: {x++;
 				break; }
+                
+            case '-': {bok--;
+				break; }
  
-		}
- 
-}
+			case '+': {bok++;
+				break; }
+ 		}
+ }
  
 //---------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
  
 void idz_do_xy(int x, int y)               //przenosi kursor do określonej pozycji (x, y)
 {

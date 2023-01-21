@@ -1,5 +1,5 @@
 //---------------------------------------//
-            //Program rysuj¹cy figurê M znakiem ASCII//
+            //Program rysujï¿½cy figurï¿½ M znakiem ASCII//
 //---------------------------------------//
 
 #include <iostream>
@@ -50,7 +50,7 @@ int main()														//----------------------
 //--------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------
 
-void wybierz_znak(char &znak) // Funkcja wybieraj¹ca znak do rysowania
+void wybierz_znak(char &znak) // Funkcja wybierajï¿½ca znak do rysowania
 {
 	system("cls");
 	cout << "Wybierz znak, ktorym chcesz narysowac litere : ";
@@ -59,7 +59,7 @@ void wybierz_znak(char &znak) // Funkcja wybieraj¹ca znak do rysowania
 }
 
 //--------------------------------------------------------------------------------------
-void wybierz_rozmiar(int &bok) // Funkcja wybieraj¹ca rozmiar
+void wybierz_rozmiar(int &bok) // Funkcja wybierajï¿½ca rozmiar
 {
 	system("cls");
 	cout << "Wybierz rozmiar, ktorym chcesz narysowac litere : ";
@@ -72,61 +72,85 @@ void wybierz_rozmiar(int &bok) // Funkcja wybieraj¹ca rozmiar
 
 
 
-	void rysuj(char znak, int x, int y, int &bok) // Funkcja rysuj¹ca literê
+	void rysuj(char znak, int x, int y, int &bok) // Funkcja rysujï¿½ca literï¿½
 {
-    int x1=0, y1=0, counter=0;
-    int x2=0, y2=0;
+    auto x1=0, y1=0;
+    auto x2=0, y2=0;
 
 
     system("cls");
 
-    idz_do_xy(x, y);
 
-    for(int x1=0; x1<bok; x1++){ // lewo
-                cout<<znak;
-                for (x2 = 0; x2 <= bok; x2++) {
-            if (x2 == bok)
-                cout <<znak;
-            else if (x2 == counter
-                    || x2 == bok - counter - 1)
-                cout <<znak;
-            else
-                cout <<" ";
-        }
-        if (counter == bok / 2) {
-            counter = -99999;
-        }
-        else
-            counter++;
-        cout <<"\n";
+        idz_do_xy(x,y);
+
+
+    for(int j=0; j<bok; j++){   //lewe ramie
+
+        cout<<znak;
+
+        idz_do_xy(x,y+j);
+    };
+
+    idz_do_xy(x,y);
+
+
+    for(int i=0; i<bok/2; i++) { //lewy skos
+
+        idz_do_xy(x+i,y+i);
+        x1=x+i;
+        y1=y+i;
+        cout<<znak;
+
     }
 
+
+    for(int i=0; i<bok/2; i++) {  //prawy skos
+
+        idz_do_xy(x1+i,y1-i);
+        x2=x1+i;
+        y2=y1-i;
+        cout<<znak;
+
     }
 
+        idz_do_xy(x2,y2);
+
+     for(int j=0; j<bok; j++){   //prawe ramie - ramie sprawiedliwosci
+
+        cout<<znak;
+
+        idz_do_xy(x2,y2+j);
+    };
 
 
+
+
+  //  idz_do_xy(x=0,y=0);
+
+
+}
 
 
 //---------------------------------------------------------------------------------------
 
-void zmien_pozycje(int &x, int &y,int &bok) // Funkcja zmieniaj¹ca pozycjê litery
-{
+void zmien_pozycje(int &x, int &y,int &bok){ // Funkcja zmieniajï¿½ca pozycjï¿½ litery
+
 	ukryj();
 
 		char znak = _getch();
 		switch (znak)
 		{
             znak = _getch();
-			case 72: {y--;
+			case 'w': {y--;
 				break; }
 
-			case 80: {y++;
+			case 's': {y++;
 				break; }
 
-			case 75: {x--;
+			case 'a': {x--;
 				break; }
 
-			case 77: {x++;
+			case 'd': {x++;
 				break; }
 
             case '-': {bok--;
@@ -144,7 +168,7 @@ void zmien_pozycje(int &x, int &y,int &bok) // Funkcja zmieniaj¹ca pozycjê liter
 
 
 
-void idz_do_xy(int x, int y)               //przenosi kursor do okreœlonej pozycji (x, y)
+void idz_do_xy(int x, int y)               //przenosi kursor do okreï¿½lonej pozycji (x, y)
 {
 	COORD c;
 	c.X = x;
@@ -154,7 +178,7 @@ void idz_do_xy(int x, int y)               //przenosi kursor do okreœlonej pozyc
 
 //---------------------------------------------------------------------------------------
 
-int gdzieJestX()            //zwraca pozycjê kursora w osi x
+int gdzieJestX()            //zwraca pozycjï¿½ kursora w osi x
 {
 
 	CONSOLE_SCREEN_BUFFER_INFO csbi;
@@ -164,7 +188,7 @@ int gdzieJestX()            //zwraca pozycjê kursora w osi x
 
 //--------------------------------------------------------------------------------------
 
-int gdzieJestY()                //zwraca pozycjê kursora w osi y
+int gdzieJestY()                //zwraca pozycjï¿½ kursora w osi y
 {
 	CONSOLE_SCREEN_BUFFER_INFO csbi;
 	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
@@ -184,7 +208,7 @@ void ukryj()                       //ukrywa kursor konsoli
 
 //--------------------------------------------------------------------------------------
 
-void myjuMyju()     //usowa zawartoœci linii, na której znajduje siê kursor
+void myjuMyju()     //usowa zawartoï¿½ci linii, na ktï¿½rej znajduje siï¿½ kursor
 {
 	int x, y;
 	x = gdzieJestX();
@@ -197,7 +221,7 @@ void myjuMyju()     //usowa zawartoœci linii, na której znajduje siê kursor
 
 //--------------------------------------------------------------------------------------
 
-void menu() // menu g³ówne
+void menu() // menu gï¿½ï¿½wne
 {
 
 	HANDLE hOut;
@@ -206,11 +230,11 @@ void menu() // menu g³ówne
 	SetConsoleTextAttribute(hOut, 0x004);
 
 	idz_do_xy(31, 12);
-	cout << "-------------------------------------------------------------" << endl;
+	cout << "-----------------'w','s','a','d' - klawisze kierunkowe-----------------" << endl;
 	idz_do_xy(31, 13);
 	cout << "--- " << "Witaj w programie rysujacym litere M znakiem ASCII!" << " ---" << endl;
 	idz_do_xy(31, 14);
-	cout << "-------------------------------------------------------------" << endl;
+	cout << "---------------'+' i '-' ustalanie wielkosci figury--------------------" << endl;
 	idz_do_xy(38, 15);
 	cout << "Aby kontunuowac, wcisnij dowolny przycisk : ";
 	_getch();

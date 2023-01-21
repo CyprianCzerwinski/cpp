@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1674296060 source:c:\users\cypri\documents\documents\zal\main.cpp
+	<iostream>
+	<conio.h>
+	<Windows.h>
+	<cstdlib>
+	<string.h>
+
